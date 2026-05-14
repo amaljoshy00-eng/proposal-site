@@ -68,7 +68,7 @@ body::before{
     }
 }
 
-/* Sound hint */
+/* Sound Hint */
 
 #soundHint{
 
@@ -81,7 +81,7 @@ body::before{
     transform:translateX(-50%);
 
     background:
-    rgba(255,255,255,0.9);
+    rgba(255,255,255,0.92);
 
     padding:12px 22px;
 
@@ -121,7 +121,7 @@ body::before{
 .card{
 
     background:
-    rgba(255,255,255,0.3);
+    rgba(255,255,255,0.32);
 
     backdrop-filter:blur(18px);
 
@@ -139,7 +139,7 @@ body::before{
 
     position:relative;
 
-    overflow:hidden;
+    overflow:visible;
 
     box-shadow:
     0 10px 40px rgba(255,77,109,0.2);
@@ -202,7 +202,7 @@ body::before{
     }
 }
 
-/* Cat */
+/* Cat GIF */
 
 #catSticker{
 
@@ -213,9 +213,13 @@ body::before{
 
     margin-bottom:15px;
 
-    transition:0.25s;
-
     display:none;
+
+    opacity:0;
+
+    transition:
+    transform 0.25s,
+    opacity 0.25s;
 
     filter:
     drop-shadow(
@@ -260,7 +264,7 @@ button{
 
     cursor:pointer;
 
-    transition:0.35s ease;
+    transition:0.3s ease;
 
     font-weight:600;
 
@@ -296,23 +300,6 @@ button{
 
     box-shadow:
     0 8px 20px rgba(255,77,109,0.35);
-
-    animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-
-    0%{
-        transform:translateX(-120%) scale(1);
-    }
-
-    50%{
-        transform:translateX(-120%) scale(1.06);
-    }
-
-    100%{
-        transform:translateX(-120%) scale(1);
-    }
 }
 
 /* NO */
@@ -340,12 +327,7 @@ button{
     box-shadow:
     0 6px 16px rgba(0,0,0,0.12);
 
-    z-index:1000;
-
-    transition:
-    left 0.15s,
-    top 0.15s,
-    transform 0.15s;
+    z-index:9999;
 }
 
 /* Credit */
@@ -460,7 +442,7 @@ button{
 <body>
 
 <div id="soundHint">
-🔊 Tap anywhere to enable sounds
+🔊 Tap anywhere once to enable sounds
 </div>
 
 <div class="card">
@@ -495,22 +477,16 @@ Created by Amal Joshy ✨
 
 <!-- Sounds -->
 
-<audio
-id="popSound"
-preload="auto"
-src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3">
+<audio id="popSound" preload="auto">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=click-124467.mp3" type="audio/mpeg">
 </audio>
 
-<audio
-id="meowSound"
-preload="auto"
-src="https://assets.mixkit.co/active_storage/sfx/209/209-preview.mp3">
+<audio id="meowSound" preload="auto">
+<source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_bb630cc098.mp3?filename=cat-meow-6226.mp3" type="audio/mpeg">
 </audio>
 
-<audio
-id="loveSound"
-preload="auto"
-src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3">
+<audio id="loveSound" preload="auto">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_c8db57f363.mp3?filename=success-fanfare-trumpets-6185.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Popup -->
@@ -520,7 +496,7 @@ src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3">
 <div class="popup-content">
 
 <img
-src="https://media.tenor.com/G4fP8VF3OCIAAAAi/milk-and-mocha.gif"
+src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
 style="
 width:160px;
 margin-bottom:20px;
@@ -627,16 +603,9 @@ function unlockSounds(){
         .catch(() => {});
     });
 
-    const hint =
     document.getElementById(
     "soundHint"
-    );
-
-    if(hint){
-
-        hint.style.display =
-        "none";
-    }
+    ).style.display = "none";
 }
 
 document.addEventListener(
@@ -655,62 +624,62 @@ const questions = [
 
 {
 text:"Please? 🥺",
-gif:"https://media.tenor.com/5iZBs74XqKAAAAAi/cute-cat.gif"
+gif:"https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif"
 },
 
 {
 text:"Think again 😭",
-gif:"https://media.tenor.com/bm8Q6yAlsPsAAAAi/cat.gif"
+gif:"https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif"
 },
 
 {
 text:"Are you sure? 💔",
-gif:"https://media.tenor.com/8fUQ7G0J8p0AAAAi/crying-cat.gif"
+gif:"https://media.giphy.com/media/l378giAZgxPw3eO52/giphy.gif"
 },
 
 {
 text:"Really sure? 😢",
-gif:"https://media.tenor.com/3x63SNUIhH0AAAAi/mochi-cat.gif"
+gif:"https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
 },
 
 {
 text:"Don't do this 😭",
-gif:"https://media.tenor.com/2roX3uxz_68AAAAi/cat-love.gif"
+gif:"https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"
 },
 
 {
 text:"One more chance? ❤️",
-gif:"https://media.tenor.com/LrSL7XDKVbgAAAAi/peachcat-cat.gif"
+gif:"https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
 },
 
 {
 text:"Still no? 🥺",
-gif:"https://media.tenor.com/WrK9o4h8tngAAAAi/cute.gif"
+gif:"https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif"
 },
 
 {
 text:"Please say yes ❤️",
-gif:"https://media.tenor.com/G4fP8VF3OCIAAAAi/milk-and-mocha.gif"
+gif:"https://media.giphy.com/media/LHZyixOnHwDDy/giphy.gif"
 },
 
 {
 text:"Why are you so stubborn 😭",
-gif:"https://media.tenor.com/7sbn-settDgAAAAi/cat-sad.gif"
+gif:"https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif"
 },
 
 {
 text:"My heart is breaking 💔",
-gif:"https://media.tenor.com/QxK5T_uM9RIAAAAi/cat-cry.gif"
+gif:"https://media.giphy.com/media/OPU6wzx8JrHna/giphy.gif"
 },
 
 {
 text:"Okay... last last chance 🥺",
-gif:"https://media.tenor.com/oPu6dF5lXHkAAAAi/cute-cat-white.gif"
+gif:"https://media.giphy.com/media/5xaOcLGvzHxDKjufnLW/giphy.gif"
 },
 
 {
 text:"Catch me if you can 👀",
-gif:"https://media.tenor.com/fvmTn0x2G4MAAAAi/angry-cat.gif"
+gif:"https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"
 }
 
 ];
@@ -718,8 +687,6 @@ gif:"https://media.tenor.com/fvmTn0x2G4MAAAAi/angry-cat.gif"
 /* Move NO */
 
 function moveButton(){
-
-    const padding = 20;
 
     const btnWidth =
     noBtn.offsetWidth;
@@ -730,24 +697,18 @@ function moveButton(){
     const maxX =
     window.innerWidth -
     btnWidth -
-    padding;
+    20;
 
     const maxY =
     window.innerHeight -
     btnHeight -
-    padding;
+    20;
 
     const randomX =
-    Math.floor(
-        Math.random() *
-        (maxX - padding)
-    ) + padding;
+    Math.random() * maxX;
 
     const randomY =
-    Math.floor(
-        Math.random() *
-        (maxY - padding)
-    ) + padding;
+    Math.random() * maxY;
 
     noBtn.style.position =
     "fixed";
@@ -761,18 +722,10 @@ function moveButton(){
     noBtn.style.transform =
     "none";
 
-    noBtn.style.right =
-    "auto";
-
-    noBtn.style.bottom =
-    "auto";
-
     noBtn.style.zIndex =
-    "99999";
+    "999999";
 
     meowSound.currentTime = 0;
-
-    meowSound.volume = 0.5;
 
     meowSound.play()
     .catch(() => {});
@@ -805,7 +758,7 @@ function detectRun(x,y){
     }
 }
 
-/* Mouse */
+/* PC */
 
 document.addEventListener(
 "mousemove",
@@ -853,12 +806,9 @@ function(){
         catSticker.style.display =
         "block";
 
-        const newGif =
-        questions[noCount - 1].gif;
-
         catSticker.src =
-        newGif + "?t=" +
-        new Date().getTime();
+        questions[noCount - 1].gif +
+        "?t=" + Date.now();
 
         catSticker.style.opacity =
         "0";
@@ -888,8 +838,9 @@ function(){
 
     let currentFont =
     parseFloat(
-    window.getComputedStyle(yesBtn)
-    .fontSize
+    window.getComputedStyle(
+    yesBtn
+    ).fontSize
     );
 
     yesBtn.style.fontSize =
@@ -904,13 +855,13 @@ function(){
     if(noCount >= 13){
 
         noBtn.style.position =
-        "relative";
+        "fixed";
 
         noBtn.style.left =
         "50%";
 
         noBtn.style.top =
-        "70px";
+        "58%";
 
         noBtn.style.transform =
         "translateX(-50%)";
@@ -937,7 +888,7 @@ function(){
         "You can't escape destiny ❤️";
 
         catSticker.src =
-        "https://media.tenor.com/G4fP8VF3OCIAAAAi/milk-and-mocha.gif";
+        "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif";
 
         noBtn.onclick = function(){
 
