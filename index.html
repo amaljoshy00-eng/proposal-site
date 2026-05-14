@@ -23,7 +23,6 @@ body{
     justify-content:center;
     align-items:center;
     font-family:'Poppins',sans-serif;
-
     background:
     linear-gradient(
         135deg,
@@ -31,11 +30,10 @@ body{
         #ffd6e0,
         #ffeef4
     );
-
     position:relative;
 }
 
-/* Floating hearts */
+/* Floating Hearts */
 
 body::before{
 
@@ -202,7 +200,7 @@ body::before{
     }
 }
 
-/* Cat GIF */
+/* Cat */
 
 #catSticker{
 
@@ -269,7 +267,7 @@ button{
 
     cursor:pointer;
 
-    transition:0.3s ease;
+    transition:0.25s ease;
 
     font-weight:600;
 
@@ -491,7 +489,11 @@ Created by Amal Joshy ✨
 </audio>
 
 <audio id="loveSound" preload="auto">
-<source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_c8db57f363.mp3?filename=success-fanfare-trumpets-6185.mp3" type="audio/mpeg">
+<source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d16737cda8.mp3?filename=correct-2-46134.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="finalSound" preload="auto">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/24/audio_c3a70e17fd.mp3?filename=magical-notification-sound-132291.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Popup -->
@@ -580,6 +582,9 @@ document.getElementById("meowSound");
 const loveSound =
 document.getElementById("loveSound");
 
+const finalSound =
+document.getElementById("finalSound");
+
 let noCount = 0;
 
 let soundUnlocked = false;
@@ -592,7 +597,7 @@ function unlockSounds(){
 
     soundUnlocked = true;
 
-    [popSound, meowSound, loveSound]
+    [popSound, meowSound, loveSound, finalSound]
     .forEach(sound => {
 
         sound.volume = 0.5;
@@ -629,7 +634,7 @@ const questions = [
 
 {
 text:"Please? 🥺",
-gif:"https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif"
+gif:"https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif"
 },
 
 {
@@ -699,29 +704,45 @@ function moveButton(){
     const btnHeight =
     noBtn.offsetHeight;
 
-    const padding = 25;
+    /* Restricted area near card */
+
+    const minX =
+    window.innerWidth * 0.12;
 
     const maxX =
-    window.innerWidth -
-    btnWidth -
-    padding;
+    window.innerWidth * 0.75;
+
+    const minY =
+    window.innerHeight * 0.15;
 
     const maxY =
-    window.innerHeight -
-    btnHeight -
-    padding;
+    window.innerHeight * 0.72;
 
-    const randomX =
-    Math.max(
-        padding,
-        Math.random() * maxX
-    );
+    let randomX =
+    Math.random() *
+    (maxX - minX) + minX;
 
-    const randomY =
-    Math.max(
-        padding,
-        Math.random() * maxY
-    );
+    let randomY =
+    Math.random() *
+    (maxY - minY) + minY;
+
+    /* Prevent outside screen */
+
+    if(randomX + btnWidth >
+       window.innerWidth - 20){
+
+        randomX =
+        window.innerWidth -
+        btnWidth - 20;
+    }
+
+    if(randomY + btnHeight >
+       window.innerHeight - 20){
+
+        randomY =
+        window.innerHeight -
+        btnHeight - 20;
+    }
 
     noBtn.style.position =
     "fixed";
@@ -876,7 +897,7 @@ function(){
     (16 + noCount * 1.5) + "px " +
     (38 + noCount * 3) + "px";
 
-    /* Final stage */
+    /* Final Stage */
 
     if(noCount >= 13){
 
@@ -925,6 +946,15 @@ function(){
 
             loveSound.play()
             .catch(() => {});
+
+            setTimeout(() => {
+
+                finalSound.currentTime = 0;
+
+                finalSound.play()
+                .catch(() => {});
+
+            },700);
         };
     }
 });
@@ -947,6 +977,15 @@ function(){
 
     loveSound.play()
     .catch(() => {});
+
+    setTimeout(() => {
+
+        finalSound.currentTime = 0;
+
+        finalSound.play()
+        .catch(() => {});
+
+    },700);
 });
 
 </script>
