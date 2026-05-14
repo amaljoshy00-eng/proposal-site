@@ -81,7 +81,7 @@ body::before{
     transform:translateX(-50%);
 
     background:
-    rgba(255,255,255,0.85);
+    rgba(255,255,255,0.9);
 
     padding:12px 22px;
 
@@ -91,7 +91,7 @@ body::before{
 
     color:#ff2e63;
 
-    z-index:9999;
+    z-index:999999;
 
     backdrop-filter:blur(10px);
 
@@ -249,17 +249,9 @@ h1{
 
     position:relative;
 
-    height:260px;
+    height:220px;
 
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:25px;
-
-    flex-wrap:wrap;
+    width:100%;
 }
 
 button{
@@ -294,7 +286,13 @@ button{
 
     font-size:21px;
 
-    position:relative;
+    position:absolute;
+
+    left:50%;
+
+    top:120px;
+
+    transform:translateX(-120%);
 
     box-shadow:
     0 8px 20px rgba(255,77,109,0.35);
@@ -305,15 +303,15 @@ button{
 @keyframes pulse{
 
     0%{
-        transform:scale(1);
+        transform:translateX(-120%) scale(1);
     }
 
     50%{
-        transform:scale(1.06);
+        transform:translateX(-120%) scale(1.06);
     }
 
     100%{
-        transform:scale(1);
+        transform:translateX(-120%) scale(1);
     }
 }
 
@@ -331,12 +329,23 @@ button{
 
     font-size:21px;
 
-    position:relative;
+    position:absolute;
+
+    left:50%;
+
+    top:120px;
+
+    transform:translateX(20%);
 
     box-shadow:
     0 6px 16px rgba(0,0,0,0.12);
 
-    z-index:2;
+    z-index:1000;
+
+    transition:
+    left 0.15s,
+    top 0.15s,
+    transform 0.15s;
 }
 
 /* Credit */
@@ -370,7 +379,7 @@ button{
     justify-content:center;
     align-items:center;
 
-    z-index:999;
+    z-index:999999;
 
     padding:20px;
 }
@@ -391,26 +400,6 @@ button{
     0 12px 45px rgba(255,77,109,0.4);
 
     max-width:500px;
-
-    position:relative;
-
-    overflow:hidden;
-}
-
-.popup-content::before{
-
-    content:"✨ 💖 ✨ 💕 ✨";
-
-    position:absolute;
-
-    top:10px;
-    left:0;
-
-    width:100%;
-
-    opacity:0.2;
-
-    font-size:28px;
 }
 
 .popup-content h1{
@@ -508,16 +497,19 @@ Created by Amal Joshy ✨
 
 <audio
 id="popSound"
+preload="auto"
 src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3">
 </audio>
 
 <audio
 id="meowSound"
+preload="auto"
 src="https://assets.mixkit.co/active_storage/sfx/209/209-preview.mp3">
 </audio>
 
 <audio
 id="loveSound"
+preload="auto"
 src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3">
 </audio>
 
@@ -609,43 +601,53 @@ document.getElementById("loveSound");
 
 let noCount = 0;
 
-/* Unlock audio */
+let soundUnlocked = false;
 
-document.body.addEventListener(
-"click",
-function(){
+/* Unlock sounds */
 
-    popSound.play().then(() => {
+function unlockSounds(){
 
-        popSound.pause();
-        popSound.currentTime = 0;
+    if(soundUnlocked) return;
 
-    }).catch(() => {});
+    soundUnlocked = true;
 
-    meowSound.play().then(() => {
+    [popSound, meowSound, loveSound]
+    .forEach(sound => {
 
-        meowSound.pause();
-        meowSound.currentTime = 0;
+        sound.volume = 0.5;
 
-    }).catch(() => {});
+        sound.play()
+        .then(() => {
 
-    loveSound.play().then(() => {
+            sound.pause();
 
-        loveSound.pause();
-        loveSound.currentTime = 0;
+            sound.currentTime = 0;
 
-    }).catch(() => {});
+        })
+        .catch(() => {});
+    });
 
     const hint =
-    document.getElementById("soundHint");
+    document.getElementById(
+    "soundHint"
+    );
 
     if(hint){
 
-        hint.style.display = "none";
+        hint.style.display =
+        "none";
     }
+}
 
-},
-{ once:true });
+document.addEventListener(
+"click",
+unlockSounds
+);
+
+document.addEventListener(
+"touchstart",
+unlockSounds
+);
 
 /* Questions */
 
@@ -717,13 +719,13 @@ gif:"https://media.tenor.com/fvmTn0x2G4MAAAAi/angry-cat.gif"
 
 function moveButton(){
 
+    const padding = 20;
+
     const btnWidth =
     noBtn.offsetWidth;
 
     const btnHeight =
     noBtn.offsetHeight;
-
-    const padding = 30;
 
     const maxX =
     window.innerWidth -
@@ -737,15 +739,18 @@ function moveButton(){
 
     const randomX =
     Math.floor(
-        Math.random() * maxX
-    );
+        Math.random() *
+        (maxX - padding)
+    ) + padding;
 
     const randomY =
     Math.floor(
-        Math.random() * maxY
-    );
+        Math.random() *
+        (maxY - padding)
+    ) + padding;
 
-    noBtn.style.position = "fixed";
+    noBtn.style.position =
+    "fixed";
 
     noBtn.style.left =
     randomX + "px";
@@ -753,17 +758,24 @@ function moveButton(){
     noBtn.style.top =
     randomY + "px";
 
-    noBtn.style.right = "auto";
+    noBtn.style.transform =
+    "none";
 
-    noBtn.style.bottom = "auto";
+    noBtn.style.right =
+    "auto";
 
-    noBtn.style.zIndex = "999";
+    noBtn.style.bottom =
+    "auto";
 
-    meowSound.volume = 0.5;
+    noBtn.style.zIndex =
+    "99999";
 
     meowSound.currentTime = 0;
 
-    meowSound.play().catch(() => {});
+    meowSound.volume = 0.5;
+
+    meowSound.play()
+    .catch(() => {});
 }
 
 /* Detect */
@@ -828,7 +840,8 @@ function(){
 
     popSound.currentTime = 0;
 
-    popSound.play().catch(() => {});
+    popSound.play()
+    .catch(() => {});
 
     noCount++;
 
@@ -843,19 +856,15 @@ function(){
         const newGif =
         questions[noCount - 1].gif;
 
-        catSticker.src = "";
-
-        setTimeout(() => {
-
-            catSticker.src = newGif;
-
-        },50);
+        catSticker.src =
+        newGif + "?t=" +
+        new Date().getTime();
 
         catSticker.style.opacity =
         "0";
 
         catSticker.style.transform =
-        "scale(0.8) rotate(-8deg)";
+        "scale(0.7)";
 
         setTimeout(() => {
 
@@ -863,14 +872,14 @@ function(){
             "1";
 
             catSticker.style.transform =
-            "scale(1.08) rotate(4deg)";
+            "scale(1.08)";
 
-        },100);
+        },80);
 
         setTimeout(() => {
 
             catSticker.style.transform =
-            "scale(1) rotate(0deg)";
+            "scale(1)";
 
         },300);
     }
@@ -898,13 +907,13 @@ function(){
         "relative";
 
         noBtn.style.left =
-        "0";
+        "50%";
 
         noBtn.style.top =
-        "-10px";
+        "70px";
 
         noBtn.style.transform =
-        "none";
+        "translateX(-50%)";
 
         noBtn.style.background =
         "transparent";
@@ -937,7 +946,8 @@ function(){
 
             loveSound.currentTime = 0;
 
-            loveSound.play().catch(() => {});
+            loveSound.play()
+            .catch(() => {});
         };
     }
 });
@@ -953,7 +963,8 @@ function(){
 
     loveSound.currentTime = 0;
 
-    loveSound.play().catch(() => {});
+    loveSound.play()
+    .catch(() => {});
 });
 
 </script>
