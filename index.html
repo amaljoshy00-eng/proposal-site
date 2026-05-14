@@ -1,85 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For You ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Poppins',sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff9eb5,
+        #ffc3d1,
+        #ffe4ec
+    );
+
+    position:relative;
+}
+
+/* Floating hearts */
+
+body::before{
+
+    content:"❤️ 💖 💕 💘 💓 ❤️ 💞";
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    font-size:45px;
+
+    opacity:0.12;
+
+    line-height:140px;
+
+    animation:floatHearts 18s linear infinite;
+
+    pointer-events:none;
+}
+
+@keyframes floatHearts{
+
+    from{
+        transform:translateY(100%);
+    }
+
+    to{
+        transform:translateY(-120%);
+    }
+}
+
+/* Card */
+
+.card{
+
+    background:
+    rgba(255,255,255,0.22);
+
+    backdrop-filter:blur(18px);
+
+    border:
+    1px solid rgba(255,255,255,0.35);
+
+    width:90%;
+    max-width:540px;
+
+    padding:45px;
+
+    border-radius:35px;
+
+    text-align:center;
+
+    box-shadow:
+    0 10px 40px rgba(255,77,109,0.25);
+
+    position:relative;
+
+    animation:cardGlow 3s infinite alternate;
+}
+
+@keyframes cardGlow{
+
+    from{
+        box-shadow:
+        0 10px 35px rgba(255,77,109,0.25);
+    }
+
+    to{
+        box-shadow:
+        0 10px 60px rgba(255,77,109,0.45);
+    }
+}
+
+/* Cat sticker */
+
+#catSticker{
+
+    width:170px;
+    height:170px;
+
+    object-fit:contain;
+
+    margin-bottom:15px;
+
+    animation:
+    bounce 2.5s infinite ease-in-out;
+
+    transition:0.2s;
+}
+
+@keyframes bounce{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* Question */
+
+h1{
+
+    color:#ff2e63;
+
+    font-size:34px;
+
+    line-height:1.4;
+
+    min-height:90px;
+
+    margin-bottom:20px;
+
+    text-shadow:
+    0 3px 12px rgba(255,0,98,0.18);
+}
+
+/* Buttons */
+
+.buttons{
+
+    margin-top:35px;
+
+    position:relative;
+
+    height:220px;
+}
+
+button{
+
+    border:none;
+
+    cursor:pointer;
+
+    transition:0.35s ease;
+
+    font-weight:600;
+
+    letter-spacing:0.5px;
+}
+
+/* YES */
+
+#yesBtn{
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff4d6d,
+        #ff758f
+    );
+
+    color:white;
+
+    padding:16px 38px;
+
+    border-radius:60px;
+
+    font-size:21px;
+
+    position:absolute;
+
+    left:28%;
+    top:80px;
+
+    box-shadow:
+    0 8px 20px rgba(255,77,109,0.35);
+}
+
+#yesBtn:hover{
+
+    transform:scale(1.08);
+
+    box-shadow:
+    0 10px 28px rgba(255,77,109,0.55);
+}
+
+/* NO */
+
+#noBtn{
+
+    background:white;
+
+    color:#444;
+
+    padding:16px 38px;
+
+    border-radius:60px;
+
+    font-size:21px;
+
+    position:absolute;
+
+    right:28%;
+    top:80px;
+
+    box-shadow:
+    0 6px 16px rgba(0,0,0,0.12);
+}
+
+#noBtn:hover{
+
+    transform:scale(1.05);
+}
+
+/* Credit */
+
+.credit{
+
+    margin-top:25px;
+
+    font-size:13px;
+
+    color:rgba(0,0,0,0.45);
+
+    letter-spacing:1px;
+
+    font-weight:500;
+}
+
+/* Popup */
+
+.popup{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(0,0,0,0.55);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+}
+
+.popup-content{
+
+    background:white;
+
+    padding:50px;
+
+    border-radius:35px;
+
+    text-align:center;
+
+    animation:pop 0.45s ease;
+
+    box-shadow:
+    0 12px 45px rgba(255,77,109,0.4);
+
+    max-width:500px;
+}
+
+.popup-content h1{
+
+    color:#ff2e63;
+
+    margin-bottom:15px;
+}
+
+.popup-content p{
+
+    font-size:22px;
+
+    color:#555;
+
+    line-height:1.8;
+}
+
+@keyframes pop{
+
+    from{
+        transform:scale(0.5);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+@keyframes heartbeat{
+
+    0%{
+        transform:scale(1);
+    }
+
+    25%{
+        transform:scale(1.12);
+    }
+
+    50%{
+        transform:scale(1);
+    }
+
+    75%{
+        transform:scale(1.12);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<img
+id="catSticker"
+src="https://media.tenor.com/5iZBs74XqKAAAAAi/cute-cat.gif"
+alt="cat"
+>
+
+<h1 id="question">
+Will you be my girlfriend? ❤️
+</h1>
+
+<div class="buttons">
+
+<button id="yesBtn">
+Yes ❤️
+</button>
+
+<button id="noBtn">
+No 😢
+</button>
+
+</div>
+
+<p class="credit">
+Created by Amal Joshy ✨
+</p>
+
+</div>
+
+<!-- Sounds -->
+
+<audio
+id="popSound"
+src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3">
+</audio>
+
+<audio
+id="meowSound"
+src="https://assets.mixkit.co/active_storage/sfx/209/209-preview.mp3">
+</audio>
+
+<audio
+id="loveSound"
+src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3">
+</audio>
+
+<!-- Romantic Popup -->
+
+<div class="popup" id="popup">
+
+<div class="popup-content">
+
+<img
+src="https://media.tenor.com/G4fP8VF3OCIAAAAi/milk-and-mocha.gif"
+style="
+width:160px;
+margin-bottom:20px;
+"
+>
+
+<h1
+style="
+font-size:42px;
+margin-bottom:18px;
+line-height:1.3;
+"
+>
+YAYYY ❤️
+</h1>
+
+<p>
+
+You just made my heart
+the happiest it has ever been 💖
+
+<br><br>
+
+From this moment,
+every smile feels brighter,
+every second feels special,
+and my world feels complete because of you ✨
+
+<br><br>
+
+I promise to cherish you,
+care for you,
+annoy you,
+make you laugh,
+and love you endlessly ❤️
+
+</p>
+
+<div
+style="
+margin-top:30px;
+font-size:38px;
+animation:heartbeat 1s infinite;
+"
+>
+💖 💕 ❤️ 💘
+</div>
+
+</div>
+
+</div>
+
 <script>
 
-const noBtn = document.getElementById("noBtn");
-const yesBtn = document.getElementById("yesBtn");
-const question = document.getElementById("question");
-const message = document.getElementById("message");
-const popup = document.getElementById("popup");
+const noBtn =
+document.getElementById("noBtn");
+
+const yesBtn =
+document.getElementById("yesBtn");
+
+const question =
+document.getElementById("question");
+
+const popup =
+document.getElementById("popup");
+
+const catSticker =
+document.getElementById("catSticker");
+
+const popSound =
+document.getElementById("popSound");
+
+const meowSound =
+document.getElementById("meowSound");
+
+const loveSound =
+document.getElementById("loveSound");
 
 let noCount = 0;
 
+/* Questions */
+
 const questions = [
-    "Please? 🥺",
-    "Think again 😭",
-    "Are you sure? 💔",
-    "Really sure? 😢",
-    "One more chance? ❤️",
-    "Don't break my heart 😭",
-    "Still no? 🥺",
-    "Please say yes ❤️",
-    "Last chance 😭",
-    "Choose carefully 👀"
+
+{
+text:"Please? 🥺",
+gif:"https://media.tenor.com/5iZBs74XqKAAAAAi/cute-cat.gif"
+},
+
+{
+text:"Think again 😭",
+gif:"https://media.tenor.com/bm8Q6yAlsPsAAAAi/cat.gif"
+},
+
+{
+text:"Are you sure? 💔",
+gif:"https://media.tenor.com/8fUQ7G0J8p0AAAAi/crying-cat.gif"
+},
+
+{
+text:"Really sure? 😢",
+gif:"https://media.tenor.com/3x63SNUIhH0AAAAi/mochi-cat.gif"
+},
+
+{
+text:"Don't do this 😭",
+gif:"https://media.tenor.com/2roX3uxz_68AAAAi/cat-love.gif"
+},
+
+{
+text:"One more chance? ❤️",
+gif:"https://media.tenor.com/LrSL7XDKVbgAAAAi/peachcat-cat.gif"
+},
+
+{
+text:"Still no? 🥺",
+gif:"https://media.tenor.com/WrK9o4h8tngAAAAi/cute.gif"
+},
+
+{
+text:"Please say yes ❤️",
+gif:"https://media.tenor.com/G4fP8VF3OCIAAAAi/milk-and-mocha.gif"
+},
+
+{
+text:"Last chance 😭",
+gif:"https://media.tenor.com/4cJ9-L7svVAAAAAi/cat-cute.gif"
+},
+
+{
+text:"Choose wisely 👀",
+gif:"https://media.tenor.com/fvmTn0x2G4MAAAAi/angry-cat.gif"
+}
+
 ];
 
-message.innerText = "";
+/* Move NO */
 
-noBtn.addEventListener("click", () => {
+function moveButton(){
+
+    const maxX =
+    window.innerWidth - 140;
+
+    const maxY =
+    window.innerHeight - 100;
+
+    const randomX =
+    Math.random() * maxX;
+
+    const randomY =
+    Math.random() * maxY;
+
+    noBtn.style.position = "fixed";
+
+    noBtn.style.left =
+    randomX + "px";
+
+    noBtn.style.top =
+    randomY + "px";
+
+    meowSound.currentTime = 0;
+    meowSound.play();
+}
+
+/* Detect mouse/touch */
+
+function detectRun(x,y){
+
+    if(noCount < 4 || noCount >= 10)
+    return;
+
+    const rect =
+    noBtn.getBoundingClientRect();
+
+    const distanceX =
+    Math.abs(
+    x - (rect.left + rect.width/2)
+    );
+
+    const distanceY =
+    Math.abs(
+    y - (rect.top + rect.height/2)
+    );
+
+    if(distanceX < 120 &&
+       distanceY < 80){
+
+        moveButton();
+    }
+}
+
+/* PC */
+
+document.addEventListener(
+"mousemove",
+function(e){
+
+    detectRun(
+        e.clientX,
+        e.clientY
+    );
+});
+
+/* Mobile */
+
+document.addEventListener(
+"touchstart",
+function(e){
+
+    const touch =
+    e.touches[0];
+
+    detectRun(
+        touch.clientX,
+        touch.clientY
+    );
+});
+
+/* NO click */
+
+noBtn.addEventListener(
+"click",
+function(){
+
+    popSound.currentTime = 0;
+    popSound.play();
 
     noCount++;
 
+    /* Change question */
+
     if(noCount <= questions.length){
-        question.innerText = questions[noCount - 1];
+
+        question.innerText =
+        questions[noCount - 1].text;
+
+        catSticker.src =
+        questions[noCount - 1].gif;
+
+        catSticker.style.transform =
+        "scale(1.15)";
+
+        setTimeout(() => {
+
+            catSticker.style.transform =
+            "scale(1)";
+
+        },200);
     }
 
-    let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+    /* Grow YES */
 
-    yesBtn.style.fontSize = (currentSize + 3) + "px";
+    let currentFont =
+    parseFloat(
+    window.getComputedStyle(yesBtn)
+    .fontSize
+    );
+
+    yesBtn.style.fontSize =
+    (currentFont + 3) + "px";
+
     yesBtn.style.padding =
-        (15 + noCount * 2) + "px " +
-        (30 + noCount * 4) + "px";
+    (16 + noCount * 2) + "px " +
+    (38 + noCount * 4) + "px";
 
-    // Start running after 4 clicks
-    if(noCount >= 4 && noCount < 10){
-        noBtn.addEventListener("mouseover", moveButton);
-    }
+    /* Final stage */
 
-    // After 10 clicks
     if(noCount >= 10){
 
-        noBtn.removeEventListener("mouseover", moveButton);
+        noBtn.style.position =
+        "absolute";
 
-        noBtn.style.position = "absolute";
-        noBtn.style.left = "50%";
-        noBtn.style.top = "15px";
-        noBtn.style.transform = "translateX(-50%)";
+        noBtn.style.left =
+        yesBtn.offsetLeft + "px";
 
-        noBtn.style.background = "transparent";
-        noBtn.style.border = "none";
-        noBtn.style.boxShadow = "none";
-        noBtn.style.fontSize = "20px";
-        noBtn.style.fontWeight = "bold";
+        noBtn.style.top =
+        (yesBtn.offsetTop - 45)
+        + "px";
 
-        question.innerText = "You can’t escape destiny ❤️";
+        noBtn.style.transform =
+        "none";
 
-        // Clicking NO triggers YES
-        noBtn.onclick = () => {
-            yesBtn.click();
+        noBtn.style.background =
+        "transparent";
+
+        noBtn.style.border =
+        "none";
+
+        noBtn.style.padding =
+        "0";
+
+        noBtn.style.boxShadow =
+        "none";
+
+        noBtn.style.fontSize =
+        "22px";
+
+        noBtn.style.fontWeight =
+        "bold";
+
+        question.innerText =
+        "You can't escape destiny ❤️";
+
+        catSticker.src =
+        "https://media.tenor.com/G4fP8VF3OCIAAAAi/milk-and-mocha.gif";
+
+        /* NO becomes YES */
+
+        noBtn.onclick = function(){
+
+            popup.style.display =
+            "flex";
+
+            loveSound.currentTime = 0;
+            loveSound.play();
         };
     }
 });
 
-function moveButton(){
+/* YES click */
 
-    const x = Math.random() * (window.innerWidth - 120);
-    const y = Math.random() * (window.innerHeight - 80);
+yesBtn.addEventListener(
+"click",
+function(){
 
-    noBtn.style.position = "fixed";
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
-}
+    popup.style.display =
+    "flex";
 
-yesBtn.addEventListener("click", () => {
-    popup.style.display = "flex";
+    loveSound.currentTime = 0;
+    loveSound.play();
 });
 
 </script>
+
+</body>
+</html>
