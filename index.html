@@ -1,124 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>For You ❤️</title>
-
-<style>
-    body{
-        margin:0;
-        font-family:Arial, sans-serif;
-        height:100vh;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-        overflow:hidden;
-    }
-
-    .card{
-        background:white;
-        padding:40px;
-        border-radius:20px;
-        text-align:center;
-        box-shadow:0 10px 30px rgba(0,0,0,0.2);
-        width:90%;
-        max-width:500px;
-        position:relative;
-    }
-
-    h1{
-        color:#ff4d6d;
-        margin-bottom:20px;
-    }
-
-    p{
-        font-size:18px;
-        color:#444;
-    }
-
-    .buttons{
-        margin-top:30px;
-        position:relative;
-        height:120px;
-    }
-
-    button{
-        padding:15px 30px;
-        border:none;
-        border-radius:50px;
-        font-size:18px;
-        cursor:pointer;
-        transition:0.3s;
-        position:absolute;
-    }
-
-    #yesBtn{
-        background:#ff4d6d;
-        color:white;
-        left:30%;
-    }
-
-    #noBtn{
-        background:#ddd;
-        color:#333;
-        right:30%;
-    }
-
-    .popup{
-        position:fixed;
-        top:0;
-        left:0;
-        width:100%;
-        height:100%;
-        background:rgba(0,0,0,0.6);
-        display:none;
-        justify-content:center;
-        align-items:center;
-    }
-
-    .popup-content{
-        background:white;
-        padding:40px;
-        border-radius:20px;
-        text-align:center;
-        animation:pop 0.4s ease;
-    }
-
-    @keyframes pop{
-        from{
-            transform:scale(0.5);
-            opacity:0;
-        }
-        to{
-            transform:scale(1);
-            opacity:1;
-        }
-    }
-</style>
-</head>
-
-<body>
-
-<div class="card">
-    <h1 id="question">Will you be my girlfriend? ❤️</h1>
-
-    <p id="message">You make my world brighter every day.</p>
-
-    <div class="buttons">
-        <button id="yesBtn">Yes ❤️</button>
-        <button id="noBtn">No 😢</button>
-    </div>
-</div>
-
-<div class="popup" id="popup">
-    <div class="popup-content">
-        <h1>YAYYY ❤️</h1>
-        <p>You just made me the happiest person alive ✨</p>
-    </div>
-</div>
-
 <script>
 
 const noBtn = document.getElementById("noBtn");
@@ -129,41 +8,70 @@ const popup = document.getElementById("popup");
 
 let noCount = 0;
 
-const texts = [
+const questions = [
     "Please? 🥺",
     "Think again 😭",
-    "Are you really sure? 💔",
-    "I’ll bring chocolates 🍫",
-    "Still no? 😢",
-    "Last chance 😭❤️"
+    "Are you sure? 💔",
+    "Really sure? 😢",
+    "One more chance? ❤️",
+    "Don't break my heart 😭",
+    "Still no? 🥺",
+    "Please say yes ❤️",
+    "Last chance 😭",
+    "Choose carefully 👀"
 ];
+
+message.innerText = "";
 
 noBtn.addEventListener("click", () => {
 
     noCount++;
 
-    if(noCount < texts.length){
-        message.innerText = texts[noCount-1];
-
-        let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-        yesBtn.style.fontSize = (currentSize + 4) + "px";
-        yesBtn.style.padding = (15 + noCount*2) + "px " + (30 + noCount*4) + "px";
+    if(noCount <= questions.length){
+        question.innerText = questions[noCount - 1];
     }
 
-    if(noCount >= 4){
+    let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
 
+    yesBtn.style.fontSize = (currentSize + 3) + "px";
+    yesBtn.style.padding =
+        (15 + noCount * 2) + "px " +
+        (30 + noCount * 4) + "px";
+
+    // Start running after 4 clicks
+    if(noCount >= 4 && noCount < 10){
         noBtn.addEventListener("mouseover", moveButton);
     }
 
-    if(noCount >= 6){
-        question.innerText = "Okay okay 😂 Choose wisely";
+    // After 10 clicks
+    if(noCount >= 10){
+
+        noBtn.removeEventListener("mouseover", moveButton);
+
+        noBtn.style.position = "absolute";
+        noBtn.style.left = "50%";
+        noBtn.style.top = "15px";
+        noBtn.style.transform = "translateX(-50%)";
+
+        noBtn.style.background = "transparent";
+        noBtn.style.border = "none";
+        noBtn.style.boxShadow = "none";
+        noBtn.style.fontSize = "20px";
+        noBtn.style.fontWeight = "bold";
+
+        question.innerText = "You can’t escape destiny ❤️";
+
+        // Clicking NO triggers YES
+        noBtn.onclick = () => {
+            yesBtn.click();
+        };
     }
 });
 
 function moveButton(){
 
     const x = Math.random() * (window.innerWidth - 120);
-    const y = Math.random() * (window.innerHeight - 60);
+    const y = Math.random() * (window.innerHeight - 80);
 
     noBtn.style.position = "fixed";
     noBtn.style.left = `${x}px`;
@@ -175,6 +83,3 @@ yesBtn.addEventListener("click", () => {
 });
 
 </script>
-
-</body>
-</html>
