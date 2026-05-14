@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>For You ❤️</title>
 
@@ -23,8 +23,7 @@ body{
     justify-content:center;
     align-items:center;
     font-family:'Poppins',sans-serif;
-    background:
-    linear-gradient(
+    background:linear-gradient(
         135deg,
         #ffb6c9,
         #ffd6e0,
@@ -33,383 +32,213 @@ body{
     position:relative;
 }
 
-/* Floating Hearts */
-
 body::before{
-
     content:"❤️ 💖 💕 💘 💓 💞";
-
     position:absolute;
-
     width:100%;
     height:100%;
-
-    font-size:40px;
-
-    opacity:0.12;
-
+    font-size:34px;
+    opacity:0.10;
     line-height:140px;
-
-    animation:floatHearts 18s linear infinite;
-
+    animation:floatHearts 28s linear infinite;
     pointer-events:none;
 }
 
 @keyframes floatHearts{
-
     from{
         transform:translateY(100%);
     }
-
     to{
         transform:translateY(-120%);
     }
 }
 
-/* Sound Hint */
-
 #soundHint{
-
     position:fixed;
-
     bottom:20px;
-
     left:50%;
-
     transform:translateX(-50%);
-
-    background:
-    rgba(255,255,255,0.92);
-
+    background:rgba(255,255,255,0.92);
     padding:12px 22px;
-
     border-radius:30px;
-
     font-size:15px;
-
     color:#ff2e63;
-
     z-index:999999;
-
     backdrop-filter:blur(10px);
-
-    box-shadow:
-    0 5px 20px rgba(0,0,0,0.1);
-
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
     animation:hintPulse 2s infinite;
 }
 
 @keyframes hintPulse{
-
     0%{
         transform:translateX(-50%) scale(1);
     }
-
     50%{
-        transform:translateX(-50%) scale(1.06);
+        transform:translateX(-50%) scale(1.04);
     }
-
     100%{
         transform:translateX(-50%) scale(1);
     }
 }
 
-/* Card */
-
 .card{
-
-    background:
-    rgba(255,255,255,0.32);
-
-    backdrop-filter:blur(18px);
-
-    border:
-    1px solid rgba(255,255,255,0.4);
-
+    background:rgba(255,255,255,0.32);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,0.4);
     width:92%;
     max-width:540px;
-
-    padding:40px;
-
+    padding:38px;
     border-radius:35px;
-
     text-align:center;
-
     position:relative;
-
     overflow:visible;
-
-    box-shadow:
-    0 10px 40px rgba(255,77,109,0.2);
-
-    animation:cardFloat 4s ease-in-out infinite;
+    box-shadow:0 10px 35px rgba(255,77,109,0.18);
+    animation:cardFloat 6s ease-in-out infinite;
 }
 
 @keyframes cardFloat{
-
     0%{
         transform:translateY(0px);
     }
-
     50%{
-        transform:translateY(-6px);
+        transform:translateY(-5px);
     }
-
     100%{
         transform:translateY(0px);
     }
 }
 
-/* Glow */
-
 .card::before{
-
     content:"";
-
     position:absolute;
-
     inset:-3px;
-
     border-radius:40px;
-
-    background:
-    linear-gradient(
+    background:linear-gradient(
         45deg,
         #ff7aa2,
         #ffd1dc,
         #ff7aa2
     );
-
     z-index:-1;
-
-    opacity:0.6;
-
-    filter:blur(12px);
-
-    animation:glowRotate 5s linear infinite;
+    opacity:0.5;
+    filter:blur(7px);
 }
-
-@keyframes glowRotate{
-
-    0%{
-        transform:rotate(0deg);
-    }
-
-    100%{
-        transform:rotate(360deg);
-    }
-}
-
-/* Cat */
 
 #catSticker{
-
     width:220px;
-
     height:220px;
-
     object-fit:contain;
-
     margin:0 auto 15px auto;
-
     display:none;
-
     opacity:0;
-
     position:relative;
-
     z-index:10;
-
-    transition:
-    transform 0.25s,
-    opacity 0.25s;
-
-    filter:
-    drop-shadow(
+    transition:transform 0.25s, opacity 0.25s;
+    filter:drop-shadow(
     0 8px 18px rgba(0,0,0,0.12)
     );
 }
 
-/* Question */
-
 h1{
-
     color:#ff2e63;
-
     font-size:34px;
-
     line-height:1.4;
-
     min-height:90px;
-
     margin-bottom:20px;
-
-    text-shadow:
-    0 4px 12px rgba(255,0,98,0.15);
+    text-shadow:0 4px 10px rgba(255,0,98,0.12);
 }
 
-/* Buttons */
-
 .buttons{
-
     margin-top:35px;
-
     position:relative;
-
     height:220px;
-
     width:100%;
 }
 
 button{
-
     border:none;
-
     cursor:pointer;
-
-    transition:0.25s ease;
-
+    transition:0.22s ease;
     font-weight:600;
-
     letter-spacing:0.5px;
 }
 
-/* YES */
-
 #yesBtn{
-
-    background:
-    linear-gradient(
+    background:linear-gradient(
         135deg,
         #ff4d6d,
         #ff758f
     );
-
     color:white;
-
     padding:16px 38px;
-
     border-radius:60px;
-
     font-size:21px;
-
     position:absolute;
-
     left:50%;
-
     top:120px;
-
     transform:translateX(-120%);
-
-    box-shadow:
-    0 8px 20px rgba(255,77,109,0.35);
+    box-shadow:0 8px 20px rgba(255,77,109,0.30);
 }
 
-/* NO */
-
 #noBtn{
-
     background:white;
-
     color:#444;
-
     padding:16px 38px;
-
     border-radius:60px;
-
     font-size:21px;
-
     position:absolute;
-
     left:50%;
-
     top:120px;
-
     transform:translateX(20%);
-
-    box-shadow:
-    0 6px 16px rgba(0,0,0,0.12);
-
+    box-shadow:0 6px 16px rgba(0,0,0,0.10);
     z-index:9999;
 }
 
-/* Credit */
-
 .credit{
-
     margin-top:20px;
-
     font-size:13px;
-
     color:rgba(0,0,0,0.45);
-
     letter-spacing:1px;
-
     font-weight:500;
 }
 
-/* Popup */
-
 .popup{
-
     position:fixed;
-
     inset:0;
-
-    background:
-    rgba(0,0,0,0.55);
-
+    background:rgba(0,0,0,0.55);
     display:none;
-
     justify-content:center;
     align-items:center;
-
     z-index:999999;
-
     padding:20px;
 }
 
 .popup-content{
-
     background:white;
-
     padding:40px;
-
     border-radius:35px;
-
     text-align:center;
-
-    animation:pop 0.45s ease;
-
-    box-shadow:
-    0 12px 45px rgba(255,77,109,0.4);
-
+    animation:pop 0.35s ease;
+    box-shadow:0 12px 40px rgba(255,77,109,0.30);
     max-width:500px;
 }
 
 .popup-content h1{
-
     color:#ff2e63;
-
     margin-bottom:15px;
 }
 
 .popup-content p{
-
     font-size:22px;
-
     color:#555;
-
     line-height:1.8;
 }
 
 @keyframes pop{
-
     from{
-        transform:scale(0.5);
+        transform:scale(0.7);
         opacity:0;
     }
-
     to{
         transform:scale(1);
         opacity:1;
@@ -417,23 +246,18 @@ button{
 }
 
 @keyframes heartbeat{
-
     0%{
         transform:scale(1);
     }
-
     25%{
-        transform:scale(1.12);
+        transform:scale(1.08);
     }
-
     50%{
         transform:scale(1);
     }
-
     75%{
-        transform:scale(1.12);
+        transform:scale(1.08);
     }
-
     100%{
         transform:scale(1);
     }
@@ -478,25 +302,21 @@ Created by Amal Joshy ✨
 
 </div>
 
-<!-- Sounds -->
-
-<audio id="popSound" preload="auto">
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=click-124467.mp3" type="audio/mpeg">
+<audio id="popSound">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=click-124467.mp3">
 </audio>
 
-<audio id="meowSound" preload="auto">
-<source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_bb630cc098.mp3?filename=cat-meow-6226.mp3" type="audio/mpeg">
+<audio id="meowSound">
+<source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_bb630cc098.mp3?filename=cat-meow-6226.mp3">
 </audio>
 
-<audio id="loveSound" preload="auto">
-<source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d16737cda8.mp3?filename=correct-2-46134.mp3" type="audio/mpeg">
+<audio id="loveSound">
+<source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d16737cda8.mp3?filename=correct-2-46134.mp3">
 </audio>
 
-<audio id="finalSound" preload="auto">
-<source src="https://cdn.pixabay.com/download/audio/2022/03/24/audio_c3a70e17fd.mp3?filename=magical-notification-sound-132291.mp3" type="audio/mpeg">
+<audio id="finalSound">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/24/audio_c3a70e17fd.mp3?filename=magical-notification-sound-132291.mp3">
 </audio>
-
-<!-- Popup -->
 
 <div class="popup" id="popup">
 
@@ -587,31 +407,17 @@ document.getElementById("finalSound");
 
 let noCount = 0;
 
+let runCount = 0;
+
 let soundUnlocked = false;
 
-/* Unlock sounds */
+/* Unlock Sounds */
 
 function unlockSounds(){
 
     if(soundUnlocked) return;
 
     soundUnlocked = true;
-
-    [popSound, meowSound, loveSound, finalSound]
-    .forEach(sound => {
-
-        sound.volume = 0.5;
-
-        sound.play()
-        .then(() => {
-
-            sound.pause();
-
-            sound.currentTime = 0;
-
-        })
-        .catch(() => {});
-    });
 
     document.getElementById(
     "soundHint"
@@ -632,71 +438,82 @@ unlockSounds
 
 const questions = [
 
-{
-text:"Please? 🥺",
-gif:"https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif"
-},
-
-{
-text:"Think again 😭",
-gif:"https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
-},
-
-{
-text:"Are you sure? 💔",
-gif:"https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"
-},
-
-{
-text:"Really sure? 😢",
-gif:"https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
-},
-
-{
-text:"Don't do this 😭",
-gif:"https://media.giphy.com/media/l378giAZgxPw3eO52/giphy.gif"
-},
-
-{
-text:"One more chance? ❤️",
-gif:"https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif"
-},
-
-{
-text:"Still no? 🥺",
-gif:"https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif"
-},
-
-{
-text:"Please say yes ❤️",
-gif:"https://media.giphy.com/media/LHZyixOnHwDDy/giphy.gif"
-},
-
-{
-text:"Why are you so stubborn 😭",
-gif:"https://media.giphy.com/media/OPU6wzx8JrHna/giphy.gif"
-},
-
-{
-text:"My heart is breaking 💔",
-gif:"https://media.giphy.com/media/5xaOcLGvzHxDKjufnLW/giphy.gif"
-},
-
-{
-text:"Okay... last last chance 🥺",
-gif:"https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif"
-},
-
-{
-text:"Catch me if you can 👀",
-gif:"https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"
-}
+{text:"Please? 🥺",gif:"https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif"},
+{text:"Think again 😭",gif:"https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"},
+{text:"Are you sure? 💔",gif:"https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"},
+{text:"Really sure? 😢",gif:"https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"},
+{text:"Don't do this 😭",gif:"https://media.giphy.com/media/l378giAZgxPw3eO52/giphy.gif"},
+{text:"One more chance? ❤️",gif:"https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif"},
+{text:"Still no? 🥺",gif:"https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif"},
+{text:"Please say yes ❤️",gif:"https://media.giphy.com/media/LHZyixOnHwDDy/giphy.gif"},
+{text:"Why are you so stubborn 😭",gif:"https://media.giphy.com/media/OPU6wzx8JrHna/giphy.gif"},
+{text:"My heart is breaking 💔",gif:"https://media.giphy.com/media/5xaOcLGvzHxDKjufnLW/giphy.gif"},
+{text:"Okay... last last chance 🥺",gif:"https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif"},
+{text:"Last chance before I run 😳",gif:"https://media.giphy.com/media/l0MYyDa8S9ghzNebm/giphy.gif"},
+{text:"Catch me if you can 👀",gif:"https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"}
 
 ];
 
-/* Move NO */
+/* Final Stage */
+
+function triggerFinalStage(){
+
+    yesBtn.style.position = "fixed";
+    yesBtn.style.left = "50%";
+    yesBtn.style.top = "58%";
+    yesBtn.style.transform =
+    "translate(-50%,-50%)";
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = "50%";
+    noBtn.style.top = "58%";
+    noBtn.style.transform =
+    "translate(-50%,-115%)";
+
+    noBtn.style.background =
+    "transparent";
+
+    noBtn.style.border = "none";
+
+    noBtn.style.padding = "0";
+
+    noBtn.style.boxShadow = "none";
+
+    noBtn.style.fontSize = "22px";
+
+    noBtn.style.fontWeight = "bold";
+
+    question.innerText =
+    "You can't escape destiny ❤️";
+
+    noBtn.onclick = function(){
+
+        popup.style.display = "flex";
+
+        loveSound.currentTime = 0;
+        loveSound.play();
+
+        setTimeout(() => {
+
+            finalSound.currentTime = 0;
+            finalSound.play();
+
+        },700);
+    };
+}
+
+/* Safe Move */
 
 function moveButton(){
+
+    if(runCount >= 20){
+
+        triggerFinalStage();
+
+        return;
+    }
+
+    runCount++;
 
     const btnWidth =
     noBtn.offsetWidth;
@@ -704,48 +521,89 @@ function moveButton(){
     const btnHeight =
     noBtn.offsetHeight;
 
-    /* Restricted area near card */
+    const card =
+    document.querySelector(".card");
 
-    const minX =
-    window.innerWidth * 0.12;
+    const rect =
+    card.getBoundingClientRect();
 
-    const maxX =
-    window.innerWidth * 0.75;
+    const padding = 20;
 
-    const minY =
-    window.innerHeight * 0.15;
+    let minX =
+    rect.left - 30;
 
-    const maxY =
-    window.innerHeight * 0.72;
+    let maxX =
+    rect.right -
+    btnWidth + 30;
+
+    let minY =
+    rect.top;
+
+    let maxY =
+    rect.bottom -
+    btnHeight + 20;
+
+    minX =
+    Math.max(
+        padding,
+        minX
+    );
+
+    maxX =
+    Math.min(
+        window.innerWidth -
+        btnWidth -
+        padding,
+        maxX
+    );
+
+    minY =
+    Math.max(
+        padding,
+        minY
+    );
+
+    maxY =
+    Math.min(
+        window.innerHeight -
+        btnHeight -
+        padding,
+        maxY
+    );
 
     let randomX =
     Math.random() *
-    (maxX - minX) + minX;
+    (maxX - minX) +
+    minX;
 
     let randomY =
     Math.random() *
-    (maxY - minY) + minY;
+    (maxY - minY) +
+    minY;
 
-    /* Prevent outside screen */
+    randomX =
+    Math.max(
+        padding,
+        Math.min(
+            randomX,
+            window.innerWidth -
+            btnWidth -
+            padding
+        )
+    );
 
-    if(randomX + btnWidth >
-       window.innerWidth - 20){
+    randomY =
+    Math.max(
+        padding,
+        Math.min(
+            randomY,
+            window.innerHeight -
+            btnHeight -
+            padding
+        )
+    );
 
-        randomX =
-        window.innerWidth -
-        btnWidth - 20;
-    }
-
-    if(randomY + btnHeight >
-       window.innerHeight - 20){
-
-        randomY =
-        window.innerHeight -
-        btnHeight - 20;
-    }
-
-    noBtn.style.position =
-    "fixed";
+    noBtn.style.position = "fixed";
 
     noBtn.style.left =
     randomX + "px";
@@ -753,40 +611,40 @@ function moveButton(){
     noBtn.style.top =
     randomY + "px";
 
-    noBtn.style.transform =
-    "none";
+    noBtn.style.transform = "none";
 
-    noBtn.style.zIndex =
-    "999999";
+    noBtn.style.transition =
+    "left 0.12s linear, top 0.12s linear";
 
     meowSound.currentTime = 0;
-
-    meowSound.play()
-    .catch(() => {});
+    meowSound.play();
 }
 
-/* Detect */
+/* Detect Near */
 
 function detectRun(x,y){
 
-    if(noCount < 7 || noCount >= 13)
-    return;
+    if(noCount !== 12){
+        return;
+    }
 
     const rect =
     noBtn.getBoundingClientRect();
 
-    const distanceX =
-    Math.abs(
-    x - (rect.left + rect.width/2)
-    );
+    const centerX =
+    rect.left + rect.width / 2;
 
-    const distanceY =
-    Math.abs(
-    y - (rect.top + rect.height/2)
-    );
+    const centerY =
+    rect.top + rect.height / 2;
 
-    if(distanceX < 120 &&
-       distanceY < 80){
+    const dx =
+    Math.abs(x - centerX);
+
+    const dy =
+    Math.abs(y - centerY);
+
+    if(dx < 120 &&
+       dy < 80){
 
         moveButton();
     }
@@ -819,21 +677,21 @@ function(e){
     );
 });
 
-/* NO click */
+/* NO Click */
 
 noBtn.addEventListener(
 "click",
 function(){
 
-    popSound.currentTime = 0;
+    if(noCount === 12){
+        return;
+    }
 
-    popSound.play()
-    .catch(() => {});
+    popSound.currentTime = 0;
+    popSound.play();
 
     meowSound.currentTime = 0;
-
-    meowSound.play()
-    .catch(() => {});
+    meowSound.play();
 
     noCount++;
 
@@ -845,43 +703,11 @@ function(){
         catSticker.style.display =
         "block";
 
-        const gifUrl =
+        catSticker.src =
         questions[noCount - 1].gif;
 
-        catSticker.src = "";
-
-        setTimeout(() => {
-
-            catSticker.src =
-            gifUrl;
-
-        },50);
-
-        catSticker.style.opacity =
-        "0";
-
-        catSticker.style.transform =
-        "scale(0.7)";
-
-        setTimeout(() => {
-
-            catSticker.style.opacity =
-            "1";
-
-            catSticker.style.transform =
-            "scale(1.08)";
-
-        },80);
-
-        setTimeout(() => {
-
-            catSticker.style.transform =
-            "scale(1)";
-
-        },300);
+        catSticker.style.opacity = "1";
     }
-
-    /* Grow YES */
 
     let currentFont =
     parseFloat(
@@ -894,69 +720,10 @@ function(){
     (currentFont + 2) + "px";
 
     yesBtn.style.padding =
-    (16 + noCount * 1.5) + "px " +
-    (38 + noCount * 3) + "px";
-
-    /* Final Stage */
-
-    if(noCount >= 13){
-
-        noBtn.style.position =
-        "fixed";
-
-        noBtn.style.left =
-        "50%";
-
-        noBtn.style.top =
-        "58%";
-
-        noBtn.style.transform =
-        "translateX(-50%)";
-
-        noBtn.style.background =
-        "transparent";
-
-        noBtn.style.border =
-        "none";
-
-        noBtn.style.padding =
-        "0";
-
-        noBtn.style.boxShadow =
-        "none";
-
-        noBtn.style.fontSize =
-        "22px";
-
-        noBtn.style.fontWeight =
-        "bold";
-
-        question.innerText =
-        "You can't escape destiny ❤️";
-
-        catSticker.src =
-        "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif";
-
-        noBtn.onclick = function(){
-
-            popup.style.display =
-            "flex";
-
-            loveSound.currentTime = 0;
-
-            loveSound.play()
-            .catch(() => {});
-
-            setTimeout(() => {
-
-                finalSound.currentTime = 0;
-
-                finalSound.play()
-                .catch(() => {});
-
-            },700);
-        };
-    }
+    (16 + noCount * 1.5) +
+    "px " +
+    (38 + noCount * 3) +
+    "px";
 });
 
 /* YES */
@@ -965,25 +732,15 @@ yesBtn.addEventListener(
 "click",
 function(){
 
-    popSound.currentTime = 0;
-
-    popSound.play()
-    .catch(() => {});
-
-    popup.style.display =
-    "flex";
+    popup.style.display = "flex";
 
     loveSound.currentTime = 0;
-
-    loveSound.play()
-    .catch(() => {});
+    loveSound.play();
 
     setTimeout(() => {
 
         finalSound.currentTime = 0;
-
-        finalSound.play()
-        .catch(() => {});
+        finalSound.play();
 
     },700);
 });
