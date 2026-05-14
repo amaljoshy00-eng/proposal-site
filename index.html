@@ -68,6 +68,54 @@ body::before{
     }
 }
 
+/* Sound hint */
+
+#soundHint{
+
+    position:fixed;
+
+    bottom:20px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:
+    rgba(255,255,255,0.85);
+
+    padding:12px 22px;
+
+    border-radius:30px;
+
+    font-size:15px;
+
+    color:#ff2e63;
+
+    z-index:9999;
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,0.1);
+
+    animation:hintPulse 2s infinite;
+}
+
+@keyframes hintPulse{
+
+    0%{
+        transform:translateX(-50%) scale(1);
+    }
+
+    50%{
+        transform:translateX(-50%) scale(1.06);
+    }
+
+    100%{
+        transform:translateX(-50%) scale(1);
+    }
+}
+
 /* Card */
 
 .card{
@@ -114,7 +162,7 @@ body::before{
     }
 }
 
-/* Glow border */
+/* Glow */
 
 .card::before{
 
@@ -169,7 +217,10 @@ body::before{
 
     display:none;
 
-    filter:drop-shadow(0 8px 18px rgba(0,0,0,0.12));
+    filter:
+    drop-shadow(
+    0 8px 18px rgba(0,0,0,0.12)
+    );
 }
 
 /* Question */
@@ -419,6 +470,10 @@ button{
 
 <body>
 
+<div id="soundHint">
+🔊 Tap anywhere to enable sounds
+</div>
+
 <div class="card">
 
 <img
@@ -554,6 +609,44 @@ document.getElementById("loveSound");
 
 let noCount = 0;
 
+/* Unlock audio */
+
+document.body.addEventListener(
+"click",
+function(){
+
+    popSound.play().then(() => {
+
+        popSound.pause();
+        popSound.currentTime = 0;
+
+    }).catch(() => {});
+
+    meowSound.play().then(() => {
+
+        meowSound.pause();
+        meowSound.currentTime = 0;
+
+    }).catch(() => {});
+
+    loveSound.play().then(() => {
+
+        loveSound.pause();
+        loveSound.currentTime = 0;
+
+    }).catch(() => {});
+
+    const hint =
+    document.getElementById("soundHint");
+
+    if(hint){
+
+        hint.style.display = "none";
+    }
+
+},
+{ once:true });
+
 /* Questions */
 
 const questions = [
@@ -599,12 +692,22 @@ gif:"https://media.tenor.com/G4fP8VF3OCIAAAAi/milk-and-mocha.gif"
 },
 
 {
-text:"Last chance 😭",
-gif:"https://media.tenor.com/4cJ9-L7svVAAAAAi/cat-cute.gif"
+text:"Why are you so stubborn 😭",
+gif:"https://media.tenor.com/7sbn-settDgAAAAi/cat-sad.gif"
 },
 
 {
-text:"Choose wisely 👀",
+text:"My heart is breaking 💔",
+gif:"https://media.tenor.com/QxK5T_uM9RIAAAAi/cat-cry.gif"
+},
+
+{
+text:"Okay... last last chance 🥺",
+gif:"https://media.tenor.com/oPu6dF5lXHkAAAAi/cute-cat-white.gif"
+},
+
+{
+text:"Catch me if you can 👀",
 gif:"https://media.tenor.com/fvmTn0x2G4MAAAAi/angry-cat.gif"
 }
 
@@ -614,13 +717,13 @@ gif:"https://media.tenor.com/fvmTn0x2G4MAAAAi/angry-cat.gif"
 
 function moveButton(){
 
-    const padding = 20;
-
     const btnWidth =
     noBtn.offsetWidth;
 
     const btnHeight =
     noBtn.offsetHeight;
+
+    const padding = 30;
 
     const maxX =
     window.innerWidth -
@@ -633,14 +736,12 @@ function moveButton(){
     padding;
 
     const randomX =
-    Math.max(
-        padding,
+    Math.floor(
         Math.random() * maxX
     );
 
     const randomY =
-    Math.max(
-        padding,
+    Math.floor(
         Math.random() * maxY
     );
 
@@ -652,7 +753,13 @@ function moveButton(){
     noBtn.style.top =
     randomY + "px";
 
-    meowSound.volume = 0.4;
+    noBtn.style.right = "auto";
+
+    noBtn.style.bottom = "auto";
+
+    noBtn.style.zIndex = "999";
+
+    meowSound.volume = 0.5;
 
     meowSound.currentTime = 0;
 
@@ -663,7 +770,7 @@ function moveButton(){
 
 function detectRun(x,y){
 
-    if(noCount < 4 || noCount >= 10)
+    if(noCount < 7 || noCount >= 13)
     return;
 
     const rect =
@@ -733,28 +840,39 @@ function(){
         catSticker.style.display =
         "block";
 
-        catSticker.src =
+        const newGif =
         questions[noCount - 1].gif;
+
+        catSticker.src = "";
+
+        setTimeout(() => {
+
+            catSticker.src = newGif;
+
+        },50);
 
         catSticker.style.opacity =
         "0";
+
+        catSticker.style.transform =
+        "scale(0.8) rotate(-8deg)";
 
         setTimeout(() => {
 
             catSticker.style.opacity =
             "1";
 
-        },50);
+            catSticker.style.transform =
+            "scale(1.08) rotate(4deg)";
 
-        catSticker.style.transform =
-        "scale(1.15) rotate(4deg)";
+        },100);
 
         setTimeout(() => {
 
             catSticker.style.transform =
             "scale(1) rotate(0deg)";
 
-        },250);
+        },300);
     }
 
     /* Grow YES */
@@ -774,7 +892,7 @@ function(){
 
     /* Final stage */
 
-    if(noCount >= 10){
+    if(noCount >= 13){
 
         noBtn.style.position =
         "relative";
