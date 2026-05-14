@@ -206,16 +206,21 @@ body::before{
 
 #catSticker{
 
-    width:170px;
-    height:170px;
+    width:220px;
+
+    height:220px;
 
     object-fit:contain;
 
-    margin-bottom:15px;
+    margin:0 auto 15px auto;
 
     display:none;
 
     opacity:0;
+
+    position:relative;
+
+    z-index:10;
 
     transition:
     transform 0.25s,
@@ -629,12 +634,12 @@ gif:"https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif"
 
 {
 text:"Think again 😭",
-gif:"https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif"
+gif:"https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
 },
 
 {
 text:"Are you sure? 💔",
-gif:"https://media.giphy.com/media/l378giAZgxPw3eO52/giphy.gif"
+gif:"https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"
 },
 
 {
@@ -644,17 +649,17 @@ gif:"https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
 
 {
 text:"Don't do this 😭",
-gif:"https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"
+gif:"https://media.giphy.com/media/l378giAZgxPw3eO52/giphy.gif"
 },
 
 {
 text:"One more chance? ❤️",
-gif:"https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
+gif:"https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif"
 },
 
 {
 text:"Still no? 🥺",
-gif:"https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif"
+gif:"https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif"
 },
 
 {
@@ -664,17 +669,17 @@ gif:"https://media.giphy.com/media/LHZyixOnHwDDy/giphy.gif"
 
 {
 text:"Why are you so stubborn 😭",
-gif:"https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif"
-},
-
-{
-text:"My heart is breaking 💔",
 gif:"https://media.giphy.com/media/OPU6wzx8JrHna/giphy.gif"
 },
 
 {
-text:"Okay... last last chance 🥺",
+text:"My heart is breaking 💔",
 gif:"https://media.giphy.com/media/5xaOcLGvzHxDKjufnLW/giphy.gif"
+},
+
+{
+text:"Okay... last last chance 🥺",
+gif:"https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif"
 },
 
 {
@@ -694,21 +699,29 @@ function moveButton(){
     const btnHeight =
     noBtn.offsetHeight;
 
+    const padding = 25;
+
     const maxX =
     window.innerWidth -
     btnWidth -
-    20;
+    padding;
 
     const maxY =
     window.innerHeight -
     btnHeight -
-    20;
+    padding;
 
     const randomX =
-    Math.random() * maxX;
+    Math.max(
+        padding,
+        Math.random() * maxX
+    );
 
     const randomY =
-    Math.random() * maxY;
+    Math.max(
+        padding,
+        Math.random() * maxY
+    );
 
     noBtn.style.position =
     "fixed";
@@ -796,6 +809,11 @@ function(){
     popSound.play()
     .catch(() => {});
 
+    meowSound.currentTime = 0;
+
+    meowSound.play()
+    .catch(() => {});
+
     noCount++;
 
     if(noCount <= questions.length){
@@ -806,9 +824,17 @@ function(){
         catSticker.style.display =
         "block";
 
-        catSticker.src =
-        questions[noCount - 1].gif +
-        "?t=" + Date.now();
+        const gifUrl =
+        questions[noCount - 1].gif;
+
+        catSticker.src = "";
+
+        setTimeout(() => {
+
+            catSticker.src =
+            gifUrl;
+
+        },50);
 
         catSticker.style.opacity =
         "0";
@@ -908,6 +934,11 @@ function(){
 yesBtn.addEventListener(
 "click",
 function(){
+
+    popSound.currentTime = 0;
+
+    popSound.play()
+    .catch(() => {});
 
     popup.style.display =
     "flex";
