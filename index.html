@@ -27,9 +27,9 @@ body{
     background:
     linear-gradient(
         135deg,
-        #ff9eb5,
-        #ffc3d1,
-        #ffe4ec
+        #ffb6c9,
+        #ffd6e0,
+        #ffeef4
     );
 
     position:relative;
@@ -39,14 +39,14 @@ body{
 
 body::before{
 
-    content:"❤️ 💖 💕 💘 💓 ❤️ 💞";
+    content:"❤️ 💖 💕 💘 💓 💞";
 
     position:absolute;
 
     width:100%;
     height:100%;
 
-    font-size:45px;
+    font-size:40px;
 
     opacity:0.12;
 
@@ -73,44 +73,88 @@ body::before{
 .card{
 
     background:
-    rgba(255,255,255,0.22);
+    rgba(255,255,255,0.3);
 
     backdrop-filter:blur(18px);
 
     border:
-    1px solid rgba(255,255,255,0.35);
+    1px solid rgba(255,255,255,0.4);
 
-    width:90%;
+    width:92%;
     max-width:540px;
 
-    padding:45px;
+    padding:40px;
 
     border-radius:35px;
 
     text-align:center;
 
-    box-shadow:
-    0 10px 40px rgba(255,77,109,0.25);
-
     position:relative;
 
-    animation:cardGlow 3s infinite alternate;
+    overflow:hidden;
+
+    box-shadow:
+    0 10px 40px rgba(255,77,109,0.2);
+
+    animation:cardFloat 4s ease-in-out infinite;
 }
 
-@keyframes cardGlow{
+@keyframes cardFloat{
 
-    from{
-        box-shadow:
-        0 10px 35px rgba(255,77,109,0.25);
+    0%{
+        transform:translateY(0px);
     }
 
-    to{
-        box-shadow:
-        0 10px 60px rgba(255,77,109,0.45);
+    50%{
+        transform:translateY(-6px);
+    }
+
+    100%{
+        transform:translateY(0px);
     }
 }
 
-/* Cat sticker */
+/* Glow border */
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-3px;
+
+    border-radius:40px;
+
+    background:
+    linear-gradient(
+        45deg,
+        #ff7aa2,
+        #ffd1dc,
+        #ff7aa2
+    );
+
+    z-index:-1;
+
+    opacity:0.6;
+
+    filter:blur(12px);
+
+    animation:glowRotate 5s linear infinite;
+}
+
+@keyframes glowRotate{
+
+    0%{
+        transform:rotate(0deg);
+    }
+
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+/* Cat */
 
 #catSticker{
 
@@ -121,25 +165,11 @@ body::before{
 
     margin-bottom:15px;
 
-    animation:
-    bounce 2.5s infinite ease-in-out;
+    transition:0.25s;
 
-    transition:0.2s;
-}
+    display:none;
 
-@keyframes bounce{
-
-    0%{
-        transform:translateY(0px);
-    }
-
-    50%{
-        transform:translateY(-12px);
-    }
-
-    100%{
-        transform:translateY(0px);
-    }
+    filter:drop-shadow(0 8px 18px rgba(0,0,0,0.12));
 }
 
 /* Question */
@@ -157,7 +187,7 @@ h1{
     margin-bottom:20px;
 
     text-shadow:
-    0 3px 12px rgba(255,0,98,0.18);
+    0 4px 12px rgba(255,0,98,0.15);
 }
 
 /* Buttons */
@@ -168,7 +198,17 @@ h1{
 
     position:relative;
 
-    height:220px;
+    height:260px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:25px;
+
+    flex-wrap:wrap;
 }
 
 button{
@@ -203,21 +243,27 @@ button{
 
     font-size:21px;
 
-    position:absolute;
-
-    left:28%;
-    top:80px;
+    position:relative;
 
     box-shadow:
     0 8px 20px rgba(255,77,109,0.35);
+
+    animation:pulse 2s infinite;
 }
 
-#yesBtn:hover{
+@keyframes pulse{
 
-    transform:scale(1.08);
+    0%{
+        transform:scale(1);
+    }
 
-    box-shadow:
-    0 10px 28px rgba(255,77,109,0.55);
+    50%{
+        transform:scale(1.06);
+    }
+
+    100%{
+        transform:scale(1);
+    }
 }
 
 /* NO */
@@ -234,25 +280,19 @@ button{
 
     font-size:21px;
 
-    position:absolute;
-
-    right:28%;
-    top:80px;
+    position:relative;
 
     box-shadow:
     0 6px 16px rgba(0,0,0,0.12);
-}
 
-#noBtn:hover{
-
-    transform:scale(1.05);
+    z-index:2;
 }
 
 /* Credit */
 
 .credit{
 
-    margin-top:25px;
+    margin-top:20px;
 
     font-size:13px;
 
@@ -280,13 +320,15 @@ button{
     align-items:center;
 
     z-index:999;
+
+    padding:20px;
 }
 
 .popup-content{
 
     background:white;
 
-    padding:50px;
+    padding:40px;
 
     border-radius:35px;
 
@@ -298,6 +340,26 @@ button{
     0 12px 45px rgba(255,77,109,0.4);
 
     max-width:500px;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.popup-content::before{
+
+    content:"✨ 💖 ✨ 💕 ✨";
+
+    position:absolute;
+
+    top:10px;
+    left:0;
+
+    width:100%;
+
+    opacity:0.2;
+
+    font-size:28px;
 }
 
 .popup-content h1{
@@ -361,7 +423,7 @@ button{
 
 <img
 id="catSticker"
-src="https://media.tenor.com/5iZBs74XqKAAAAAi/cute-cat.gif"
+src=""
 alt="cat"
 >
 
@@ -404,7 +466,7 @@ id="loveSound"
 src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3">
 </audio>
 
-<!-- Romantic Popup -->
+<!-- Popup -->
 
 <div class="popup" id="popup">
 
@@ -552,17 +614,35 @@ gif:"https://media.tenor.com/fvmTn0x2G4MAAAAi/angry-cat.gif"
 
 function moveButton(){
 
+    const padding = 20;
+
+    const btnWidth =
+    noBtn.offsetWidth;
+
+    const btnHeight =
+    noBtn.offsetHeight;
+
     const maxX =
-    window.innerWidth - 140;
+    window.innerWidth -
+    btnWidth -
+    padding;
 
     const maxY =
-    window.innerHeight - 100;
+    window.innerHeight -
+    btnHeight -
+    padding;
 
     const randomX =
-    Math.random() * maxX;
+    Math.max(
+        padding,
+        Math.random() * maxX
+    );
 
     const randomY =
-    Math.random() * maxY;
+    Math.max(
+        padding,
+        Math.random() * maxY
+    );
 
     noBtn.style.position = "fixed";
 
@@ -572,11 +652,14 @@ function moveButton(){
     noBtn.style.top =
     randomY + "px";
 
+    meowSound.volume = 0.4;
+
     meowSound.currentTime = 0;
-    meowSound.play();
+
+    meowSound.play().catch(() => {});
 }
 
-/* Detect mouse/touch */
+/* Detect */
 
 function detectRun(x,y){
 
@@ -603,7 +686,7 @@ function detectRun(x,y){
     }
 }
 
-/* PC */
+/* Mouse */
 
 document.addEventListener(
 "mousemove",
@@ -637,29 +720,41 @@ noBtn.addEventListener(
 function(){
 
     popSound.currentTime = 0;
-    popSound.play();
+
+    popSound.play().catch(() => {});
 
     noCount++;
-
-    /* Change question */
 
     if(noCount <= questions.length){
 
         question.innerText =
         questions[noCount - 1].text;
 
+        catSticker.style.display =
+        "block";
+
         catSticker.src =
         questions[noCount - 1].gif;
 
+        catSticker.style.opacity =
+        "0";
+
+        setTimeout(() => {
+
+            catSticker.style.opacity =
+            "1";
+
+        },50);
+
         catSticker.style.transform =
-        "scale(1.15)";
+        "scale(1.15) rotate(4deg)";
 
         setTimeout(() => {
 
             catSticker.style.transform =
-            "scale(1)";
+            "scale(1) rotate(0deg)";
 
-        },200);
+        },250);
     }
 
     /* Grow YES */
@@ -671,25 +766,24 @@ function(){
     );
 
     yesBtn.style.fontSize =
-    (currentFont + 3) + "px";
+    (currentFont + 2) + "px";
 
     yesBtn.style.padding =
-    (16 + noCount * 2) + "px " +
-    (38 + noCount * 4) + "px";
+    (16 + noCount * 1.5) + "px " +
+    (38 + noCount * 3) + "px";
 
     /* Final stage */
 
     if(noCount >= 10){
 
         noBtn.style.position =
-        "absolute";
+        "relative";
 
         noBtn.style.left =
-        yesBtn.offsetLeft + "px";
+        "0";
 
         noBtn.style.top =
-        (yesBtn.offsetTop - 45)
-        + "px";
+        "-10px";
 
         noBtn.style.transform =
         "none";
@@ -718,20 +812,19 @@ function(){
         catSticker.src =
         "https://media.tenor.com/G4fP8VF3OCIAAAAi/milk-and-mocha.gif";
 
-        /* NO becomes YES */
-
         noBtn.onclick = function(){
 
             popup.style.display =
             "flex";
 
             loveSound.currentTime = 0;
-            loveSound.play();
+
+            loveSound.play().catch(() => {});
         };
     }
 });
 
-/* YES click */
+/* YES */
 
 yesBtn.addEventListener(
 "click",
@@ -741,7 +834,8 @@ function(){
     "flex";
 
     loveSound.currentTime = 0;
-    loveSound.play();
+
+    loveSound.play().catch(() => {});
 });
 
 </script>
